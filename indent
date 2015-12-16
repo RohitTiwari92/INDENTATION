@@ -1,0 +1,137 @@
+#include<iostream>
+#include<fstream>
+#include<string>
+#include<algorithm>
+using namespace std;
+int main()
+{
+    int count=0,count1=0,comm=0;
+    int temp=0,p,i,temp1=0,j;
+    string line;
+    ifstream myfile("main.cpp");
+    if(myfile.is_open())
+
+    {
+
+        while(getline(myfile,line))
+        {
+
+            /*
+            for(int i=0;line[i]!='\0';i++)
+            {
+                if(line[i]==enter || line[i]==tab)
+                {
+                    count1++;
+                    cout<<count1;
+                }
+            }
+
+            while(cin.get(line) != '\0')
+            {
+                count1++;
+                cout<<count1;
+            }
+            */
+
+
+           // std::replace( line.begin(), line.end(), '\n', " ");
+            //line.erase(std::remove(line.begin(),line.end(),'\t'),line.end());
+
+            if(line.find ('\t') != string::npos)
+            {
+                comm++;
+            }
+
+            for(j=comm;j>0;j--)
+            {
+                cout<<"\t";
+            }
+
+            if(line.find ("{") != string::npos)
+            {
+                cout<<"\n";
+                count++;
+                temp=count;
+            }
+            if(line.find ("<<") != string::npos)
+            {
+                cout<<"\n";
+            }
+
+            if(line.find ("}") != string::npos)
+            {
+                count=temp--;
+            }
+
+            for(i=0;i<count;i++)
+            {
+                cout<<"\t";
+            }
+
+            if(line.find ("/*") != string::npos)
+            {
+                comm=temp1++;
+            }
+
+            if(line.find ("*") != string::npos)
+            {
+                comm=temp1--;
+            }
+
+            if(line.find ("/*") != string::npos || line.find ("*/") != string::npos)
+            {
+                cout<<"\n";
+            }
+
+            std::cout << line.length();
+            cout<<line;
+
+            for(i=0;i<count;i++)
+            {
+                cout<<"\t";
+            }
+
+            if(line.find ("#") != string::npos || line.find (">") != string::npos)
+            {
+                cout<<"\n";
+            }
+
+            for(j=1;j<comm;j++)
+            {
+                cout<<"\t";
+            }
+
+            if(line.find (";") != string::npos && line.find ("}") != string::npos)
+            {
+                cout<<"\n";
+            }
+
+            if(line.find (";") != string::npos)
+            {
+                cout<<"\n";
+            }
+
+            if(line.find ("}") != string::npos)
+            {
+                cout<<"\n";
+            }
+
+            if(line.find ("{") != string::npos)
+            {
+                cout<<"\n";
+            }
+
+            if(line.find ("/*") != string::npos || line.find ("*/") != string::npos)
+            {
+                cout<<"\n";
+            }
+
+
+        }
+
+        myfile.close();
+    }
+    else
+        cout<<"unable to open file";
+return 0;
+}
