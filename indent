@@ -135,3 +135,7 @@ int main()
         cout<<"unable to open file";
 return 0;
 }
+
+
+//  string = std::regex_replace(string, std::regex("\\$ "), "");
+//use this syntex for replace string
